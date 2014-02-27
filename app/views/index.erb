@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>User Skills and Levels</h1>
+
+  <form action='/new_skill' method='post'>
+    <input type='text' name='name' placeholder='Name'>
+    <input type='text' name='years' placeholder='Years practiced'>
+    <select name='formal'>
+      <option value='formal'>formal</option>
+      <option value='informal'>informal</option>
+    </select>
+    <select name='context'>
+      <option value='technical'>technical</option>
+      <option value='creative'>creative</option>
+    </select>
+    <input type='submit' value='Submit'>
+  </form>
+
+  <%# TODO: display the skills and proficiency levels for each user ... %>
+  <p>Name                 Skill                   Years            Formal?</p>
+  <% User.all.each do |u|%>
+    <%= User.find(u.id).name%>:
+    <% u.skills.all.each do |s|%>
+    <p>  <%= s.name %>(<%=s.context%>)<%= s.years%> <%= s.formal%></p>
+    <% end %>
+    <p>-----------------------------------------------------------------------</p>
+  <% end %>
+</div>
